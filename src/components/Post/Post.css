@@ -70,6 +70,7 @@
 .Post__footer___caption__username {
   font-weight: bolder;
   display: inline;
+  margin-right: 10px;
 }
 .Post__footer___caption__username:hover {
   text-decoration: underline;

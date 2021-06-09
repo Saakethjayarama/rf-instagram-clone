@@ -6,7 +6,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Post />
+      {/* Posts */}
+      <div className="App__posts">
+        <Post />
+      </div>
     </div>
   );
 }

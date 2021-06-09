@@ -1,11 +1,11 @@
 .Header {
   background-color: white;
+  border-bottom: solid 1px #dbdbdb;
 }
 
 .Header__container {
   display: flex;
   align-items: center;
-  border-bottom: solid 1px #dbdbdb;
   padding: 10px 20px;
 }
 
@@ -48,4 +48,17 @@
   border: 5px solid transparent;
   border-bottom-color: black;
   border-top: none;
+}
+
+@media only screen and (min-width: 690px) {
+  .Header__container {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 1140px) {
+  .Header__container {
+    width: 60%;
+  }
 }
