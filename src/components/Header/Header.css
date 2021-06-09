@@ -1,5 +1,8 @@
 .Header {
   background-color: white;
+}
+
+.Header__container {
   display: flex;
   align-items: center;
   border-bottom: solid 1px #dbdbdb;
@@ -34,4 +37,15 @@
 
 .Header__icons__icon:hover .Header__icons__info {
   visibility: visible;
+}
+
+.Header__icons__info::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translate(-60%, 0);
+  border: 5px solid transparent;
+  border-bottom-color: black;
+  border-top: none;
 }
