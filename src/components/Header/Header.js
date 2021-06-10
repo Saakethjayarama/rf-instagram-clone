@@ -6,13 +6,14 @@ import { auth, signOut } from "../../Firebase";
 
 // MUI
 import { ExitToApp, Lock, Refresh, Add, LibraryAdd } from "@material-ui/icons";
-import { Avatar, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 // Modal
 import CenteredModal from "../Modal";
 
 import Login from "../Login";
 import Signup from "../Signup";
+import PostForm from "../PostForm";
 
 const useStyles = makeStyles((theme) => ({
   icons: {
@@ -49,17 +50,21 @@ function Header() {
    * * Modal
    */
 
-  const [isModalShown, setModalShow] = useState(true);
-  const [modalContent, setModalContent] = useState(<Signup />);
+  const [isModalShown, setModalShow] = useState(false);
+  const [modalContent, setModalContent] = useState(<></>);
 
   const showLoginModal = () => {
-    setModalContent(<Login />);
+    setModalContent(<Login close={() => setModalShow(false)} />);
     setModalShow(true);
   };
 
   const showSignupModal = () => {
     setModalContent(<Signup close={() => setModalShow(false)} />);
     setModalShow(true);
+  };
+
+  const showPostForm = () => {
+    setModalContent(<PostForm close={() => setModalShow(false)} />);
   };
 
   return (
@@ -76,7 +81,10 @@ function Header() {
           <div className="Header__icons">
             {/* Login Signup */}
             <div className="Header__icons__icon">
-              <Refresh className={classes.icons} />
+              <Refresh
+                className={classes.icons}
+                onClick={() => window.location.reload()}
+              />
               <div className="Header__icons__info">Refresh</div>
             </div>
             <div className="Header__icons__icon">
@@ -86,9 +94,6 @@ function Header() {
             <div className="Header__icons__icon">
               <ExitToApp className={classes.icons} onClick={() => signOut()} />
               <div className="Header__icons__info">SignOut</div>
-            </div>
-            <div className="Header__icons__icon">
-              <Avatar alt={user?.displayName} />
             </div>
           </div>
         ) : (

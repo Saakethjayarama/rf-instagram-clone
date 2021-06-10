@@ -1,15 +1,15 @@
 /* Modal Styling */
-.Login__header {
+.PostForm__header {
   display: flex;
   justify-content: center !important;
 }
 
-.Login__logo {
+.PostForm__logo {
   object-fit: contain;
   height: 40px;
 }
 
-.Login__form {
+.PostForm__form {
   width: 70%;
   margin: auto;
   padding: 20px !important;
@@ -17,10 +17,6 @@
   flex-direction: column;
 }
 
-.Login__submitbtn {
+.PostForm__submitbtn {
   margin-top: 25px;
-}
-
-.Login__submitbtnDisabled {
-  background-color: grey !important;
 }

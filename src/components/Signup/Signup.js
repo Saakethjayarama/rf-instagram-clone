@@ -24,7 +24,8 @@ function Signup({ close }) {
         close();
       })
       .catch((err) => {
-        setErr(err.error.message);
+        console.log(err);
+        // setErr(err.error.message);
         setLoading(false);
       });
   };
@@ -48,7 +49,7 @@ function Signup({ close }) {
         <form className="Signup__form" onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Mobile Number or Email"
+            placeholder="Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
