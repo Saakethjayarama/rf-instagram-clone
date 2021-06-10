@@ -47,9 +47,11 @@ const checkUserNames = (username) => {
     fstore
       .collection("users")
       .doc("USERNAMES")
-      .get((snapshot) => {
+      .get()
+      .then((snapshot) => {
         const data = snapshot.data();
         const usernames = Object.values(data);
+        console.log(usernames);
         if (usernames.indexOf(username) == -1) {
           resolve({
             status: 3,

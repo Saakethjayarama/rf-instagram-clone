@@ -14,18 +14,19 @@ function Signup({ close }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const enabled = email != "" && name != "" && username != "" && password != "";
+  const enabled =
+    email != "" && name != "" && username != "" && password != "" && err == "";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
+    setErr("");
     createUser(email, password, name, username)
       .then(() => {
         close();
       })
       .catch((err) => {
-        console.log(err);
-        // setErr(err.error.message);
+        setErr(err.error.message);
         setLoading(false);
       });
   };
