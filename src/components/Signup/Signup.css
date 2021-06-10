@@ -1,0 +1,33 @@
+.Signup__header {
+  display: flex;
+  justify-content: center !important;
+}
+
+.Signup__logo {
+  object-fit: contain;
+  height: 40px;
+}
+
+.Signup__form {
+  width: 70%;
+  margin: auto;
+  padding: 20px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.Signup__Error {
+  width: 60%;
+  margin: auto;
+  padding: 5px 20px;
+  background-color: rgba(255, 0, 0, 0.612);
+  color: white;
+  text-align: center;
+}
+
+.Signup__submitbtn {
+  margin-top: 25px;
+}
+.Signup__submitbtnDisabled {
+  background-color: grey !important;
+}

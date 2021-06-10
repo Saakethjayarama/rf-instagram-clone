@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 
 // Bootstrap
 import { Modal } from "react-bootstrap";
+import { LinearProgress } from "@material-ui/core";
 
 function Login() {
+  const [err, setErr] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
   return (
     <React.Fragment>
       <Modal.Header className="Login__header">
@@ -18,7 +22,9 @@ function Login() {
           <input type="text" placeholder="Phone number, username, or email" />
           <input type="text" placeholder="Password" />
           <input type="submit" value="Log In" className="Login__submitbtn" />
+          {isLoading && <LinearProgress />}
         </form>
+        {err && <div className="Signup__Error">Saaketh</div>}
       </Modal.Body>
     </React.Fragment>
   );

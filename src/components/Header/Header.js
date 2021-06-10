@@ -10,7 +10,9 @@ import { Avatar, makeStyles } from "@material-ui/core";
 
 // Modal
 import CenteredModal from "../Modal";
+
 import Login from "../Login";
+import Signup from "../Signup";
 
 const useStyles = makeStyles((theme) => ({
   icons: {
@@ -48,10 +50,15 @@ function Header() {
    */
 
   const [isModalShown, setModalShow] = useState(true);
-  const [modalContent, setModalContent] = useState(<Login />);
+  const [modalContent, setModalContent] = useState(<Signup />);
 
   const showLoginModal = () => {
     setModalContent(<Login />);
+    setModalShow(true);
+  };
+
+  const showSignupModal = () => {
+    setModalContent(<Signup close={() => setModalShow(false)} />);
     setModalShow(true);
   };
 
@@ -81,12 +88,15 @@ function Header() {
               <div className="Header__icons__info">SignOut</div>
             </div>
             <div className="Header__icons__icon">
-              <Avatar alt={user.displayName} src={user.photoURL} />
+              <Avatar alt={user?.displayName} />
             </div>
           </div>
         ) : (
           <div className="Header__icons">
-            <div className="Header__icons__icon">
+            <div
+              className="Header__icons__icon"
+              onClick={() => showSignupModal()}
+            >
               <Add className={classes.icons} />
               <div className="Header__icons__info">Signup</div>
             </div>

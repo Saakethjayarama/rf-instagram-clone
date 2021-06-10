@@ -17,14 +17,16 @@ code {
   display: none;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   margin: 10px 0px;
   padding: 10px;
   border: 1px solid lightseagreen;
   border-radius: 4px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   outline: none;
 }
 
