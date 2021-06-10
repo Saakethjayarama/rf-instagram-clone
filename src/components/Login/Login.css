@@ -1,0 +1,23 @@
+/* Modal Styling */
+.Login__header {
+  display: flex;
+  justify-content: center !important;
+}
+
+.Login__logo {
+  object-fit: contain;
+  height: 40px;
+}
+
+.Login__form {
+  width: 70%;
+  margin: auto;
+  padding: 20px !important;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.Login__submitbtn {
+  margin-top: 50px;
+}

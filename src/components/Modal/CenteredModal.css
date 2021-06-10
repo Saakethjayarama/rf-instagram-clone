@@ -1,0 +1,15 @@
+.CenteredModal {
+  width: 100% !important;
+}
+
+@media only screen and (min-width: 690px) {
+  .CenteredModal {
+    width: 80% !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .CenteredModal {
+    width: 40% !important;
+  }
+}

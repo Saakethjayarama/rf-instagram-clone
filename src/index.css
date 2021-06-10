@@ -16,3 +16,22 @@ code {
 *::-webkit-scrollbar {
   display: none;
 }
+
+input[type="text"] {
+  margin: 10px 0px;
+  padding: 10px;
+  border: 1px solid lightseagreen;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+input[type="submit"] {
+  background-color: #0095f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}

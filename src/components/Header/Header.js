@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 
-// MUI icons
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import LockIcon from "@material-ui/icons/Lock";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import AddIcon from "@material-ui/icons/Add";
-import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
+// Firebase
+import { auth, signOut } from "../../Firebase";
 
-import { makeStyles } from "@material-ui/core";
+// MUI
+import { ExitToApp, Lock, Refresh, Add, LibraryAdd } from "@material-ui/icons";
+import { Avatar, makeStyles } from "@material-ui/core";
+
+// Modal
+import CenteredModal from "../Modal";
+import Login from "../Login";
 
 const useStyles = makeStyles((theme) => ({
   icons: {
@@ -22,40 +24,78 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
   const classes = useStyles();
 
-  const boolval = Math.random() >= 0.5;
+  /**
+   * * Authentication
+   */
+  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const listener = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setAuthenticated(true);
+        setUser(user);
+      } else {
+        setAuthenticated(false);
+      }
+    });
+    return () => {
+      listener();
+    };
+  });
+
+  /**
+   * * Modal
+   */
+
+  const [isModalShown, setModalShow] = useState(true);
+  const [modalContent, setModalContent] = useState(<Login />);
+
+  const showLoginModal = () => {
+    setModalContent(<Login />);
+    setModalShow(true);
+  };
 
   return (
     <div className="Header">
+      <CenteredModal show={isModalShown} onHide={() => setModalShow(false)}>
+        {modalContent}
+      </CenteredModal>
       <div className="Header__container">
         <img
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
           className="Header__logo"
         />
-        {boolval ? (
+        {isAuthenticated ? (
           <div className="Header__icons">
+            {/* Login Signup */}
             <div className="Header__icons__icon">
-              <AddIcon className={classes.icons} />
-              <div className="Header__icons__info">Signup</div>
+              <Refresh className={classes.icons} />
+              <div className="Header__icons__info">Refresh</div>
             </div>
             <div className="Header__icons__icon">
-              <LockIcon className={classes.icons} />
-              <div className="Header__icons__info">Login</div>
+              <LibraryAdd className={classes.icons} />
+              <div className="Header__icons__info">AddPost</div>
+            </div>
+            <div className="Header__icons__icon">
+              <ExitToApp className={classes.icons} onClick={() => signOut()} />
+              <div className="Header__icons__info">SignOut</div>
+            </div>
+            <div className="Header__icons__icon">
+              <Avatar alt={user.displayName} src={user.photoURL} />
             </div>
           </div>
         ) : (
           <div className="Header__icons">
-            {/* Login Signup */}
             <div className="Header__icons__icon">
-              <RefreshIcon className={classes.icons} />
-              <div className="Header__icons__info">Refresh</div>
+              <Add className={classes.icons} />
+              <div className="Header__icons__info">Signup</div>
             </div>
-            <div className="Header__icons__icon">
-              <LibraryAddIcon className={classes.icons} />
-              <div className="Header__icons__info">AddPost</div>
-            </div>
-            <div className="Header__icons__icon">
-              <ExitToAppIcon className={classes.icons} />
-              <div className="Header__icons__info">SignOut</div>
+            <div
+              className="Header__icons__icon"
+              onClick={() => showLoginModal()}
+            >
+              <Lock className={classes.icons} />
+              <div className="Header__icons__info">Login</div>
             </div>
           </div>
         )}
