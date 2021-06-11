@@ -6,7 +6,7 @@ import { signIn } from "../../Firebase";
 import { Modal } from "react-bootstrap";
 import { LinearProgress, Typography } from "@material-ui/core";
 
-function Login({ close, main }) {
+function Login({ close = () => {}, main }) {
   const [err, setErr] = useState("");
   const [isLoading, setLoading] = useState(false);
 
