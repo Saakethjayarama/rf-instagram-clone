@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
+import Login from "./components/Login";
 import Post from "./components/Post";
 import { auth, getPosts } from "./Firebase";
 
@@ -36,7 +37,11 @@ function App() {
             <Post post={post} key={post.id} />
           ))}
         </div>
-      ) : null}
+      ) : (
+        <div className="App__login">
+          <Login main />
+        </div>
+      )}
     </div>
   );
 }

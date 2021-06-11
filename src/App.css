@@ -14,8 +14,17 @@ html {
   width: 100%;
 }
 
+.App__login {
+  width: 100%;
+  margin: auto;
+}
+
 @media only screen and (min-width: 690px) {
   .App__posts {
+    width: 60%;
+    margin: auto;
+  }
+  .App__login {
     width: 60%;
     margin: auto;
   }
@@ -24,5 +33,9 @@ html {
 @media only screen and (min-width: 1140px) {
   .App__posts {
     width: 40%;
+  }
+  .App__login {
+    width: 40%;
+    margin: auto;
   }
 }

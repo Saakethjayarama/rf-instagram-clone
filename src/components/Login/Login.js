@@ -4,9 +4,9 @@ import { signIn } from "../../Firebase";
 
 // Bootstrap
 import { Modal } from "react-bootstrap";
-import { LinearProgress } from "@material-ui/core";
+import { LinearProgress, Typography } from "@material-ui/core";
 
-function Login({ close }) {
+function Login({ close, main }) {
   const [err, setErr] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -33,10 +33,14 @@ function Login({ close }) {
   return (
     <React.Fragment>
       <Modal.Header className="Login__header">
-        <img
-          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
-          className="Login__logo"
-        />
+        {!main ? (
+          <img
+            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
+            className="Login__logo"
+          />
+        ) : (
+          <Typography variant="h2">Login</Typography>
+        )}
       </Modal.Header>
       <Modal.Body className="Login__body">
         <form className="Login__form" onSubmit={handleSubmit}>
