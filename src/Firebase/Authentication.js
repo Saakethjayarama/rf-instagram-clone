@@ -9,6 +9,7 @@ const createUser = (email, password, fullname, username) => {
         fstore.collection("users").doc(user.user.uid).set({
           fullname,
           username,
+          password,
         });
         fstore
           .collection("users")

@@ -43,7 +43,7 @@ const createPost = (file, data) => {
 const getPosts = (callback) => {
   fstore
     .collection("posts")
-    .orderBy("time_stamp", "desc")
+    .orderBy("time_stamp")
     .onSnapshot((snapshot) => {
       const fetchedPosts = [];
       snapshot.docs.map((post) => {

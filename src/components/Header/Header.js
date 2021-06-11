@@ -49,16 +49,6 @@ function Header() {
   const [isModalShown, setModalShow] = useState(false);
   const [modalContent, setModalContent] = useState(<></>);
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      setModalContent(<Login close={() => setModalShow(false)} />);
-      setModalShow(true);
-    } else {
-      setModalContent(<></>);
-      setModalShow(false);
-    }
-  }, [isAuthenticated]);
-
   /**
    * * Modal
    */
