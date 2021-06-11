@@ -26,24 +26,6 @@
 .Post__head__username:hover {
   text-decoration: underline;
 }
-.Post__head__options {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 0px;
-}
-.Post__head__option {
-  cursor: pointer;
-}
-
-.Post__head__options .dot {
-  width: 5px;
-  height: 5px;
-  background-color: black;
-  display: inline-block;
-  border-radius: 100%;
-  margin: 1px;
-}
 
 .Post__image {
   width: 100%;

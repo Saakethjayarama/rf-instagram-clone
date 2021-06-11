@@ -13,8 +13,6 @@ const config = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-console.log(config);
-
 app.initializeApp(config);
 const fstore = app.firestore();
 const auth = app.auth();

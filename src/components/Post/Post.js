@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, makeStyles } from "@material-ui/core";
 import "./Post.css";
+import { auth, disLikePost, likePost } from "../../Firebase";
 
 // Material ui icons
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -19,13 +20,29 @@ const useStyles = makeStyles((themes) => ({
   },
 }));
 
-function Post() {
+function Post({ post }) {
   const classes = useStyles();
+  const { id, url, caption, uname, likes } = post;
 
   const [isLiked, setLiked] = useState(false);
 
+  useEffect(() => {
+    if (likes.indexOf(auth.currentUser.uid) == -1) {
+      setLiked(false);
+    } else {
+      setLiked(true);
+    }
+  }, [likes]);
+
   const likeHandler = () => {
-    setLiked(!isLiked);
+    likePost(id, auth.currentUser.uid);
+    if (isLiked) {
+      setLiked(false);
+      disLikePost(id, auth.currentUser.uid);
+    } else {
+      setLiked(true);
+      likePost(id, auth.currentUser.uid);
+    }
   };
 
   return (
@@ -35,24 +52,14 @@ function Post() {
       <div className="Post__head">
         {/* Acc name */}
         <div className="Post__head__user">
-          <Avatar
-            alt="Remy Sharp"
-            src="./user.jpg"
-            className={classes.avatar}
-          />
-          <div className="Post__head__username">sudo_daemon</div>
-        </div>
-        {/* Options */}
-        <div className="Post__head__options">
-          <div className="Post__head__option">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
+          <Avatar alt={uname} className={classes.avatar}>
+            {uname?.charAt(0)}
+          </Avatar>
+          <div className="Post__head__username">{uname}</div>
         </div>
       </div>
       {/* Img */}
-      <img src="./post.jpg" className="Post__image" />
+      <img src={url} className="Post__image" />
       {/* Footer */}
       <div className="Post__footer">
         {/* like */}
@@ -68,10 +75,10 @@ function Post() {
               onClick={likeHandler}
             />
           )}
-          <div className="Post__footer__likes__count">126,459 likes</div>
+          <div className="Post__footer__likes__count">{likes.length}</div>
           <div className="Post__footer__caption">
             <div className="Post__footer___caption__username">sudo_daemon</div>
-            Saaketh is good boy
+            {caption}
           </div>
         </div>
       </div>

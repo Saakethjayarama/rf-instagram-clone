@@ -20,6 +20,7 @@ function PostForm({ close }) {
       caption,
       likes: [],
       uid: auth.currentUser.uid,
+      uname: auth.currentUser.displayName,
     })
       .then((res) => {
         setLoading(false);

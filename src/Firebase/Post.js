@@ -40,4 +40,56 @@ const createPost = (file, data) => {
   });
 };
 
-export { createPost };
+const getPosts = (callback) => {
+  fstore
+    .collection("posts")
+    .orderBy("time_stamp")
+    .onSnapshot((snapshot) => {
+      const fetchedPosts = [];
+      snapshot.docs.map((post) => {
+        if (post.id !== "POSTS") {
+          fetchedPosts.push({
+            id: post.id,
+            ...post.data(),
+          });
+        }
+      });
+      callback(fetchedPosts);
+    });
+};
+
+const likePost = (id, uid) => {
+  fstore
+    .collection("posts")
+    .doc(id)
+    .get()
+    .then((snapshot) => {
+      const { likes } = snapshot.data();
+      fstore
+        .collection("posts")
+        .doc(id)
+        .update({ likes: [...likes, uid] });
+    });
+};
+
+const disLikePost = (id, uid) => {
+  fstore
+    .collection("posts")
+    .doc(id)
+    .get()
+    .then((snapshot) => {
+      const { likes } = snapshot.data();
+
+      const index = likes.indexOf(uid);
+      if (index > -1) {
+        fstore
+          .collection("posts")
+          .doc(id)
+          .update({
+            likes: [...likes.slice(0, index), ...likes.slice(index + 1)],
+          });
+      }
+    });
+};
+
+export { createPost, getPosts, likePost, disLikePost };
