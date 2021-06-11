@@ -65,6 +65,7 @@ function Header() {
 
   const showPostForm = () => {
     setModalContent(<PostForm close={() => setModalShow(false)} />);
+    setModalShow(true);
   };
 
   return (
@@ -88,7 +89,7 @@ function Header() {
               <div className="Header__icons__info">Refresh</div>
             </div>
             <div className="Header__icons__icon">
-              <LibraryAdd className={classes.icons} />
+              <LibraryAdd className={classes.icons} onClick={showPostForm} />
               <div className="Header__icons__info">AddPost</div>
             </div>
             <div className="Header__icons__icon">

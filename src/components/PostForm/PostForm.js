@@ -1,10 +1,15 @@
 import { LinearProgress } from "@material-ui/core";
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import "./PostForm.css";
 
 function PostForm() {
   const [err, setErr] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <React.Fragment>
@@ -16,12 +21,16 @@ function PostForm() {
       </Modal.Header>
       <Modal.Body className="PostForm__body">
         <form className="PostForm__form">
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Password" />
-          <input type="submit" value="Log In" className="PostForm__submitbtn" />
+          <input type="file" placeholder="Image" />
+          <textarea
+            placeholder="Caption"
+            rows={5}
+            className="PostForm__caption"
+          ></textarea>
+          <input type="submit" value="Post" className="PostForm__submitbtn" />
           {isLoading && <LinearProgress />}
         </form>
-        {err && <div className="Signup__Error">Saaketh</div>}
+        {err && <div className="Signup__Error">{err}</div>}
       </Modal.Body>
     </React.Fragment>
   );

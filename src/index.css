@@ -30,6 +30,17 @@ input[type="password"]:focus {
   outline: none;
 }
 
+textarea {
+  margin: 100px 0px;
+  padding: 10px;
+  border: 1px solid lightseagreen;
+  border-radius: 4px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
 input[type="submit"] {
   background-color: #0095f6;
   color: white;
