@@ -6,5 +6,14 @@ import {
   updateProfile,
   checkUserNames,
 } from "./Authentication";
+import { createPost } from "./Post";
 
-export { createUser, signIn, signOut, updateProfile, checkUserNames, auth };
+export {
+  createUser,
+  signIn,
+  signOut,
+  updateProfile,
+  checkUserNames,
+  auth,
+  createPost,
+};

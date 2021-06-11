@@ -1,14 +1,34 @@
 import { LinearProgress } from "@material-ui/core";
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { createPost, auth } from "../../Firebase";
 import "./PostForm.css";
 
-function PostForm() {
+function PostForm({ close }) {
   const [err, setErr] = useState("");
   const [isLoading, setLoading] = useState();
 
+  const [caption, setCaption] = useState("");
+  const [file, setFile] = useState(null);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErr("");
+    setLoading(true);
+
+    createPost(file, {
+      caption,
+      likes: [],
+      uid: auth.currentUser.uid,
+    })
+      .then((res) => {
+        setLoading(false);
+        close();
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErr(err.error.message);
+      });
   };
 
   return (
@@ -20,13 +40,19 @@ function PostForm() {
         />
       </Modal.Header>
       <Modal.Body className="PostForm__body">
-        <form className="PostForm__form">
-          <input type="file" placeholder="Image" />
+        <form className="PostForm__form" onSubmit={handleSubmit}>
+          <input
+            type="file"
+            placeholder="Image"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
           <textarea
             placeholder="Caption"
             rows={5}
             className="PostForm__caption"
-          ></textarea>
+            onChange={(e) => setCaption(e.target.value)}
+            value={caption}
+          />
           <input type="submit" value="Post" className="PostForm__submitbtn" />
           {isLoading && <LinearProgress />}
         </form>
