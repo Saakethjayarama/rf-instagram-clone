@@ -15,7 +15,7 @@ npm start
 2. Material UI Button and TextBox
 3. Bootstrap Modal
 4. Material UI Snackbar
-5. Firebase Realtime Database
+5. Firebase Storage
 6. Firebase Storage
 7. Firebase Auth
 
