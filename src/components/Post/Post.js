@@ -77,7 +77,7 @@ function Post({ post }) {
           )}
           <div className="Post__footer__likes__count">{likes.length}</div>
           <div className="Post__footer__caption">
-            <div className="Post__footer___caption__username">sudo_daemon</div>
+            <div className="Post__footer___caption__username">{uname}</div>
             {caption}
           </div>
         </div>
